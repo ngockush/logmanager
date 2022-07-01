@@ -36,8 +36,8 @@
           <tr>
             <th scope="row">{{ $key + 1 }}</th>
             <td>{{ $file['file_name'] }}</td>
-            <td>{{ \Carbon\Carbon::createFromTimeStamp($file['last_modified'])->formatLocalized('%d %B %Y') }}</td>
-            <td>{{ \Carbon\Carbon::createFromTimeStamp($file['last_modified'])->formatLocalized('%H:%M') }}</td>
+            <td>{{ \Carbon\Carbon::createFromTimeStamp($file['last_modified'])->isoFormat(config('backpack.logmanager.date_format') ?: config('backpack.base.default_date_format')) }}</td>
+            <td>{{ \Carbon\Carbon::createFromTimeStamp($file['last_modified'])->isoFormat('HH:mm') }}</td>
             <td class="text-right">{{ round((int)$file['file_size']/1048576, 2).' MB' }}</td>
             <td>
                 <a class="btn btn-sm btn-link" href="{{ url(config('backpack.base.route_prefix', 'admin').'/log/preview/'. encrypt($file['file_name'])) }}"><i class="la la-eye"></i> {{ trans('backpack::logmanager.preview') }}</a>
